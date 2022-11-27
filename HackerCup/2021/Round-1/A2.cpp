@@ -1,6 +1,6 @@
 /*
  * Author: Ryoga.exe
- * Submitted at: 2021-09-12 20:54:53 (JST)
+ * Submitted at: 2021-09-12 20:54:53 (UTC+09:00)
  * Problem URL: https://www.facebook.com/codingcompetitions/hacker-cup/2021/round-1/problems/A2
  * Result: Accepted
 */

@@ -1,6 +1,6 @@
 /*
  * Author: Ryoga.exe
- * Submitted at: 2021-08-30 15:54:25 (JST)
+ * Submitted at: 2021-08-30 15:54:25 (UTC+09:00)
  * Problem URL: https://www.facebook.com/codingcompetitions/hacker-cup/2021/qualification-round/problems/B
  * Result: Accepted
 */
