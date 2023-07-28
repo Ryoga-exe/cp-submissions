@@ -15,6 +15,7 @@ PROBLEMS_API_ENDPOINT = "https://kenkoooo.com/atcoder/atcoder-api/v3/user/submis
 class AtCoderSubmissionsArchiver():
     def __init__(self):
         self.load_config()
+        self.unfound_codes = []
 
     def load_config(self) -> dict:
         with open(CONFIG_PATH, "r", encoding="UTF-8") as f:
@@ -79,8 +80,8 @@ class AtCoderSubmissionsArchiver():
             print(f"\r\033[1m ({cnt: 3}/{len(submissions): 3})\033[0m Submission #{record.id} ({record.problem_id}, at {datetime.fromtimestamp(record.epoch_second)})", end="", flush=True)
             if record.result == "AC":
                 code = self.fetch_code(record)
-    #           self.write_code_and_commit(s=record, code=code)
-    #           self.commit_code(s=record)
+                self.write_code(s=record, code=code)
+                self.commit_code(s=record)
                 print("\033[2K\033[G", end="")
                 print(f"\r\033[92mDone\033[0m\t{record.contest_id}/{record.problem_id}: #{record.id} at {datetime.fromtimestamp(record.epoch_second)}", flush=True)
             else:
@@ -88,8 +89,8 @@ class AtCoderSubmissionsArchiver():
                 print(f"\r\033[93m[{record.result}]\033[0m\t{record.contest_id}/{record.problem_id}: #{record.id} at {datetime.fromtimestamp(record.epoch_second)}", flush=True)
             cnt += 1
             self.last_update = record.epoch_second
-        for unfound_code in unfound_codes:
-            submission_url = f"https://atcoder.jp/contests/{s.contest_id}/submissions/{s.id}"
+        for unfound_code in self.unfound_codes:
+            submission_url = f"https://atcoder.jp/contests/{unfound_code.contest_id}/submissions/{unfound_code.id}"
             print(f"\033[1;37;43m Warn \033[0m Code #{s.id} could not be fetched. ({submmission_url})")
         self.update_config()
         print("\033[1;37;42m ALL DONE! \033[0m")
