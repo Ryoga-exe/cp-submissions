@@ -11,7 +11,7 @@ def commit(s: Submission, path: str) -> None:
         repo.git.commit("-m", commit_message)
     except git.GitCommandError as err:
         print("\033[2K\033[G", end="")
-        print(f"\r\033[1;37;41m Fail \033[0m Failed to commit: {commit_msg}", flush=True)
+        print(f"\r\033[1;37;41m Fail \033[0m Failed to commit: {commit_message}", flush=True)
         print(err)
         if "Your branch is up to date with 'origin/main'." in err.stdout:
             print("Nothing to commit, skipping...")
@@ -21,6 +21,6 @@ def commit(s: Submission, path: str) -> None:
         repo.git.rebase("HEAD~1", "--committer-date-is-author-date")
     except git.GitCommandError as err:
         print("\033[2K\033[G", end="")
-        print(f"\r\033[1;37;41m Fail \033[0m Failed to rebase: {commit_msg}", flush=True)
+        print(f"\r\033[1;37;41m Fail \033[0m Failed to rebase: {commit_message}", flush=True)
         print(err)
         exit(1)
