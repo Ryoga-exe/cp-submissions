@@ -6,7 +6,7 @@ from datatypes import Submission
 def commit(s: Submission, path: str) -> None:
     repo = git.Repo(".")
     repo.git.add(path)
-    commit_message = f"[AtCoder] archive: {s.contest_id}/{s.problem_id} #{s.id}"
+    commit_message = f"[AtCoder] archive: {s.contest_id}/{s.problem_id} (ID: {s.id})"
     try:
         repo.git.commit("-m", commit_message)
     except git.GitCommandError as err:
